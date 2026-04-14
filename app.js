@@ -9,7 +9,7 @@ if(process.env.NODE_ENV != "production"){
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const Listing = require("./models/listing.js");
+const Listing = require("./models/hotel.js");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require('ejs-mate');
@@ -22,11 +22,11 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
 
-const listingRouter = require("./routes/listing.js");
+const hotelRouter = require("./routes/hotel.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js")
 
-const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/wanderlust";
+const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/hotelease";
 
 main().then(() => {
   console.log("Connected to DB")
@@ -103,8 +103,8 @@ app.use((req, res, next)=>{
 // res.send(registeredUser);
 // });
 
-  app.use("/listings", listingRouter);
-  app.use("/listings/:id/reviews", reviewRouter);
+  app.use("/hotels", hotelRouter);
+  app.use("/hotels/:id/reviews", reviewRouter);
   app.use("/", userRouter);
 
 app.all("*", (req , res, next)=>{

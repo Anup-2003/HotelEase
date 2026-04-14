@@ -1,4 +1,4 @@
-const Listing = require("../models/listing");
+const Listing = require("../models/hotel");
 const { cloudinary } = require("../cloudConfig");
 const mbxgeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapToken = process.env.MAP_TOKEN;
@@ -7,11 +7,11 @@ const geocodingClient =mbxgeocoding({accessToken: mapToken});
 
 module.exports.index = async (req, res) => {
     const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings });
+    res.render("hotels/index.ejs", { allListings });
 }
 
 module.exports.renderNewForm = async (req, res) => {
-    res.render("listings/new.ejs");
+    res.render("hotels/new.ejs");
 };
 
 module.exports.showListing = async (req, res) => {
@@ -25,11 +25,11 @@ module.exports.showListing = async (req, res) => {
     }).
      populate("owner");
     if(!listing){
-        req.flash("error","Lisitng you requested for does not exist");
-       return res.redirect("/listings");
+        req.flash("error","Hotel you requested for does not exist");
+       return res.redirect("/hotels");
     }
 
-    res.render("listings/show.ejs", { listing });
+    res.render("hotels/show.ejs", { listing });
 };
 
 module.exports.createListing = async (req, res, next) => {
@@ -51,14 +51,14 @@ module.exports.createListing = async (req, res, next) => {
     newListing.geometry =response.body.features[0].geometry;
     let savedlisings = await newListing.save();
   
-    req.flash("success", "New Listing Created");
-    res.redirect("/listings"); // Redirect to new listing page 
+    req.flash("success", "New Hotel Added!");
+    res.redirect("/hotels"); // Redirect to new listing page 
 };
 
 module.exports.renderEditForm = async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
-    res.render("listings/edit.ejs", { listing });
+    res.render("hotels/edit.ejs", { listing });
 };
 
 module.exports.updateListing = async (req, res) => {
@@ -66,8 +66,8 @@ module.exports.updateListing = async (req, res) => {
   let listing = await Listing.findById(id);
 
   if (!listing) {
-      req.flash("error", "Listing not found!");
-      return res.redirect("/listings");
+      req.flash("error", "Hotel not found!");
+      return res.redirect("/hotels");
   }
 
   // Track original values
@@ -87,14 +87,14 @@ module.exports.updateListing = async (req, res) => {
 
           if (!geoResponse.body.features[0]?.geometry?.type) {
               req.flash("error", "Invalid location data");
-              return res.redirect(`/listings/${id}/edit`);
+              return res.redirect(`/hotels/${id}/edit`);
           }
 
           listing.geometry = geoResponse.body.features[0].geometry;
       } catch (err) {
           console.error("Geocoding failed:", err);
           req.flash("error", "Error validating location");
-          return res.redirect(`/listings/${id}/edit`);
+          return res.redirect(`/hotels/${id}/edit`);
       }
   }
 
@@ -102,13 +102,13 @@ module.exports.updateListing = async (req, res) => {
   // ...
 
   await listing.save();
-  req.flash("success", "Listing Updated!");
-  res.redirect(`/listings/${id}`);
+  req.flash("success", "Hotel Updated!");
+  res.redirect(`/hotels/${id}`);
 };
 
 module.exports.destroyListing = async (req, res) => {
     let { id } = req.params;
     let deleteListing = await Listing.findByIdAndDelete(id);
-    req.flash("success", "Listing Deleted!");
-    res.redirect("/listings");
+    req.flash("success", "Hotel Removed!");
+    res.redirect("/hotels");
 };

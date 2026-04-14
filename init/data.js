@@ -347,6 +347,66 @@ const sampleListings = [
     location: "Costa Rica",
     country: "Costa Rica",
   },
+  {
+    title: "Eco-Friendly Treehouse Retreat",
+    description:
+      "Reconnect with nature in this sustainable and beautifully designed wooden treehouse nestled high in the ancient redwood forest.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?q=80&w=2670&auto=format&fit=crop",
+    },
+    price: 320,
+    location: "Santa Cruz",
+    country: "United States",
+  },
+  {
+    title: "Desert Dome Oasis",
+    description:
+      "A futuristic geodesic dome providing uninterrupted stargazing and complete peace under the vast desert sky.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1445308394109-4ec292098a71?q=80&w=2674&auto=format&fit=crop",
+    },
+    price: 450,
+    location: "Joshua Tree",
+    country: "United States",
+  },
+  {
+    title: "Floating Villa on Emerald Waters",
+    description:
+      "Wake up to the sound of gentle waves in this overwater villa featuring a private infinity pool and direct ocean access.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?q=80&w=2670&auto=format&fit=crop",
+    },
+    price: 1850,
+    location: "Bora Bora",
+    country: "Mexico",
+  },
+  {
+    title: "Nordic Glass Igloo",
+    description:
+      "Watch the Northern Lights from your warm bed in this stunning 360-degree glass igloo wrapped in snow.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1549294413-26f195200c16?q=80&w=2664&auto=format&fit=crop",
+    },
+    price: 1200,
+    location: "Lapland",
+    country: "Finland",
+  },
+  {
+    title: "Cliffside Greek Sanctuary",
+    description:
+      "Experience iconic Mediterranean sunsets from the private jacuzzi of this dazzling white cliffside apartment.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1613214149922-f1809c99b414?q=80&w=2670&auto=format&fit=crop",
+    },
+    price: 2100,
+    location: "Santorini",
+    country: "Greece",
+  }
 ];
 
 module.exports = { data: sampleListings };

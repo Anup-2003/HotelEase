@@ -2,11 +2,11 @@
 
     <div>
         <div>
-            <h3>Edit your listings</h3>
+            <h3>Edit your Hotel / Property</h3>
             <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
 
                 <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
+                    <label for="title" class="form-label">Hotel Name / Title</label>
                     <input name="listing[title]" value="<%=listing.title%>" type="text" class="form-control">
                 </div>
 
@@ -39,7 +39,7 @@
                         value="<%=listing.location%>">
                 </div>
 
-                <button type="Edit" class="btn btn-dark edit-btn">Add</button>
+                <button type="submit" class="btn btn-dark edit-btn mt-3 mb-3">Update Hotel</button>
 
             </form>
         </div>
