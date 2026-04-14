@@ -1,6 +1,6 @@
 {
   "engines": {
-    "node": "16.20.2"
+    "node": ">=18.0.0"
   },
   "name": "hotelease",
   "version": "1.0.0",
