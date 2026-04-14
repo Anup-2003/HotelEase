@@ -105,7 +105,11 @@ app.use((req, res, next)=>{
 
   app.use("/hotels", hotelRouter);
   app.use("/hotels/:id/reviews", reviewRouter);
-  app.use("/", userRouter);
+  app.use('/', userRouter);
+
+app.get('/', (req, res) => {
+  res.redirect('/hotels');
+});
 
 app.all("*", (req , res, next)=>{
   next(new ExpressError(404 , "This page is Invalid"));
